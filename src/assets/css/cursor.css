@@ -1,0 +1,16 @@
+.custom-cursor {
+  cursor:
+    url('/src/assets/cursor/Alien Sitting on Moon & Floating With Planet - cursor - SweezyCursors.png'),
+    auto;
+}
+
+/* Aplicar cursor pointer apenas em elementos clicáveis */
+.custom-cursor button,
+.custom-cursor a,
+.custom-cursor input[type='submit'],
+.custom-cursor input[type='button'],
+.custom-cursor [role='button'] {
+  cursor:
+    url('/src/assets/cursor/Alien Sitting on Moon & Floating With Planet - pointer - SweezyCursors.png'),
+    pointer;
+}
