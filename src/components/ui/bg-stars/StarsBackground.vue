@@ -2,7 +2,7 @@
   <div
     :class="
       cn(
-        'relative size-full overflow-hidden bg-[radial-gradient(ellipse_at_bottom,_#071526_50%,_#000_100%)]',
+        'relative size-full overflow-hidden bg-[radial-gradient(ellipse_at_bottom,_var(--stars-from)_50%,_var(--stars-to)_100%)]',
         props.class,
       )
     "
@@ -105,7 +105,7 @@ const props = withDefaults(defineProps<StarsBackgroundProps>(), {
   factor: 0.05,
   speed: 50,
   transition: () => ({ stiffness: 50, damping: 20 }),
-  starColor: '#fff',
+  starColor: 'var(--stars-color)',
 })
 
 // For slot content

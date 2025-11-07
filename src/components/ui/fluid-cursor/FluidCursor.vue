@@ -1221,12 +1221,24 @@ onMounted(() => {
     return delta
   }
 
+  // Custom palette (normalized 0..1) per request:
+  // #071526, #5A6B8C, #F2F2F2, #BDD9F2, #F28D52
+  const PALETTE: ColorRGB[] = [
+    { r: 0.02745, g: 0.08235, b: 0.14902 }, // 7,21,38
+    { r: 0.35294, g: 0.41961, b: 0.54902 }, // 90,107,140
+    { r: 0.94902, g: 0.94902, b: 0.94902 }, // 242,242,242
+    { r: 0.74118, g: 0.85098, b: 0.94902 }, // 189,217,242
+    { r: 0.94902, g: 0.55294, b: 0.32157 }, // 242,141,82
+  ]
+
+  // Global intensity factor to soften colors
+  const INTENSITY = 0.1
+
+  let paletteIndex = 0
   function generateColor(): ColorRGB {
-    const c = HSVtoRGB(Math.random(), 1.0, 1.0)
-    c.r *= 0.15
-    c.g *= 0.15
-    c.b *= 0.15
-    return c
+    const color = PALETTE[paletteIndex % PALETTE.length]
+    paletteIndex += 1
+    return { r: color.r * INTENSITY, g: color.g * INTENSITY, b: color.b * INTENSITY }
   }
 
   function HSVtoRGB(h: number, s: number, v: number): ColorRGB {
@@ -1302,6 +1314,14 @@ onMounted(() => {
   document.body.addEventListener('mousemove', handleFirstMouseMove)
 
   window.addEventListener('mousemove', (e) => {
+    // Check if hovering over an interactive element
+    const target = e.target as HTMLElement
+    const isInteractive = target.closest(
+      'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])',
+    )
+
+    if (isInteractive) return // Skip fluid effect over clickable elements
+
     const pointer = pointers[0]
     const posX = scaleByPixelRatio(e.clientX)
     const posY = scaleByPixelRatio(e.clientY)

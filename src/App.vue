@@ -1,20 +1,32 @@
 <script setup lang="ts">
 import { FluidCursor } from './components/ui/fluid-cursor'
 import { StarsBackground } from './components/ui/bg-stars'
-import { Button } from './components/ui/button'
+import Navbar from './components/Navbar.vue'
+import { onMounted } from 'vue'
+import { useThemeStore } from '@/stores/theme'
 
-const buttonClick = () => {
-  alert('Button clicked!')
-}
+const theme = useThemeStore()
+onMounted(() => {
+  theme.init()
+})
 </script>
 
-<template class="">
-  <StarsBackground starColor="#BDD9F2" class="absolute inset-0 z-0">
+<template>
+  <div class="relative min-h-screen flex flex-col text-foreground antialiased">
+    <!-- Background layer -->
+    <StarsBackground class="pointer-events-none absolute inset-0 -z-10" />
+
+    <!-- Cursor FX overlay -->
     <FluidCursor />
-    <div class="w-screen h-screen flex items-center justify-center z-10 relative">
-      <Button variant="outline" @click="buttonClick">Hover me!</Button>
-    </div>
-  </StarsBackground>
+
+    <!-- App layout -->
+    <header class="w-full flex-none">
+      <Navbar />
+    </header>
+    <main class="relative z-10 flex items-center justify-center flex-1 container mx-auto px-4">
+      <RouterView />
+    </main>
+  </div>
 </template>
 
 <style scoped></style>
