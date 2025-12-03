@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 
 const getServerConfig = () => {
   return {
-    host: '192.168.10.19',
+    host: '192.168.1.5',
     // host: 'localhost',
     port: 5173,
   }

@@ -4,10 +4,14 @@ import { StarsBackground } from './components/ui/bg-stars'
 import Navbar from './components/Navbar.vue'
 import { onMounted } from 'vue'
 import { useThemeStore } from '@/stores/theme'
+import { useLocaleStore } from '@/stores/locale'
 
 const theme = useThemeStore()
+const locale = useLocaleStore()
+
 onMounted(() => {
   theme.init()
+  locale.init()
 })
 </script>
 
@@ -23,7 +27,9 @@ onMounted(() => {
     <header class="w-full flex-none">
       <Navbar />
     </header>
-    <main class="relative z-10 flex items-center justify-center flex-1 container mx-auto px-4">
+    <main
+      class="relative z-10 flex items-center justify-center flex-1 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12"
+    >
       <RouterView />
     </main>
   </div>
