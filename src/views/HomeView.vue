@@ -28,7 +28,7 @@ const SOCIAL_LINKS = {
         <Avatar class="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32">
           <AvatarImage
             class="h-full w-full rounded-[inherit] object-cover"
-            src="src/assets/img/profile-picture.jpg"
+            src="/profile-picture.jpg"
             alt="profile-image"
           />
           <AvatarFallback>NN</AvatarFallback>
