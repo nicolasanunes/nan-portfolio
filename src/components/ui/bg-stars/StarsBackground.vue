@@ -13,7 +13,7 @@
       <motion.div
         class="absolute top-0 left-0 w-full h-[2000px]"
         :animate="{ y: [0, -2000] }"
-        :transition="starLayer1Transition"
+        :transition="starLayer1Transition as any"
       >
         <div
           class="absolute bg-transparent rounded-full"
@@ -37,7 +37,7 @@
       <motion.div
         class="absolute top-0 left-0 w-full h-[2000px]"
         :animate="{ y: [0, -2000] }"
-        :transition="starLayer2Transition"
+        :transition="starLayer2Transition as any"
       >
         <div
           class="absolute bg-transparent rounded-full"
@@ -61,7 +61,7 @@
       <motion.div
         class="absolute top-0 left-0 w-full h-[2000px]"
         :animate="{ y: [0, -2000] }"
-        :transition="starLayer3Transition"
+        :transition="starLayer3Transition as any"
       >
         <div
           class="absolute bg-transparent rounded-full"
