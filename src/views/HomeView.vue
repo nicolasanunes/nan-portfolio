@@ -49,12 +49,16 @@ const { t } = useI18n()
         class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 w-full sm:w-auto"
       >
         <RouterLink to="/curriculum-vitae" class="w-full sm:w-auto">
-          <Button class="rounded-md text-xs sm:text-sm w-full sm:w-auto">{{ t('home.cv') }}</Button>
+          <Button class="rounded-md text-xs sm:text-sm w-full sm:w-auto font-orbitron">{{
+            t('home.cv')
+          }}</Button>
         </RouterLink>
         <RouterLink to="/projects" class="w-full sm:w-auto">
-          <Button class="rounded-md text-xs sm:text-sm w-full sm:w-auto" variant="outline">{{
-            t('home.projects')
-          }}</Button>
+          <Button
+            class="rounded-md text-xs sm:text-sm w-full sm:w-auto font-orbitron"
+            variant="outline"
+            >{{ t('home.projects') }}</Button
+          >
         </RouterLink>
       </div>
       <div class="flex items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6">

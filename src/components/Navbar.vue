@@ -55,7 +55,7 @@ const closeMobileMenu = () => {
         <GradientButton>
           <div class="flex items-center gap-1.5 sm:gap-2">
             <img src="/logo.png" alt="logo" class="w-5 h-5 sm:w-6 sm:h-6" />
-            <p class="font-bold text-sm sm:text-base block">Nícolas</p>
+            <p class="font-bold text-sm sm:text-base block font-orbitron">Nícolas</p>
           </div>
         </GradientButton>
       </RouterLink>
@@ -65,21 +65,21 @@ const closeMobileMenu = () => {
         <RouterLink to="/">
           <Button
             :variant="$route.path === '/' ? 'secondary' : 'ghost'"
-            class="text-xs lg:text-sm"
+            class="text-xs lg:text-sm font-orbitron"
             >{{ t('nav.home') }}</Button
           >
         </RouterLink>
         <RouterLink to="/curriculum-vitae">
           <Button
             :variant="$route.path === '/curriculum-vitae' ? 'secondary' : 'ghost'"
-            class="text-xs lg:text-sm"
+            class="text-xs lg:text-sm font-orbitron"
             >{{ t('nav.cv') }}</Button
           >
         </RouterLink>
         <RouterLink to="/projects">
           <Button
             :variant="$route.path === '/projects' ? 'secondary' : 'ghost'"
-            class="text-xs lg:text-sm"
+            class="text-xs lg:text-sm font-orbitron"
             >{{ t('nav.projects') }}</Button
           >
         </RouterLink>
@@ -141,21 +141,21 @@ const closeMobileMenu = () => {
           <RouterLink to="/" @click="closeMobileMenu()">
             <Button
               :variant="$route.path === '/' ? 'secondary' : 'ghost'"
-              class="w-full justify-start text-sm"
+              class="w-full justify-start text-sm font-orbitron"
               >{{ t('nav.home') }}</Button
             >
           </RouterLink>
           <RouterLink to="/curriculum-vitae" @click="closeMobileMenu()">
             <Button
               :variant="$route.path === '/curriculum-vitae' ? 'secondary' : 'ghost'"
-              class="w-full justify-start text-sm"
+              class="w-full justify-start text-sm font-orbitron"
               >{{ t('nav.cv') }}</Button
             >
           </RouterLink>
           <RouterLink to="/projects" @click="closeMobileMenu()">
             <Button
               :variant="$route.path === '/projects' ? 'secondary' : 'ghost'"
-              class="w-full justify-start text-sm"
+              class="w-full justify-start text-sm font-orbitron"
               >{{ t('nav.projects') }}</Button
             >
           </RouterLink>

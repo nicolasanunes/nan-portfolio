@@ -137,15 +137,17 @@ const openLink = (url: string) => {
 <template>
   <div class="min-h-screen py-6">
     <div class="max-w-7xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8">{{ t('projects.title') }}</h1>
+      <h1 class="text-4xl font-bold font-orbitron mb-8">{{ t('projects.title') }}</h1>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8">
         <!-- Sidebar with filters -->
         <aside class="lg:col-span-3">
           <div class="sticky top-8">
-            <div class="lg:bg-card lg:rounded-lg lg:border pb-2 lg:p-6">
+            <div
+              class="lg:bg-card lg:rounded-lg lg:border lg:shadow-[0_0_20px_0_hsl(var(--primary)/0.2)] lg:hover:shadow-[0_0_30px_0_hsl(var(--primary)/0.3)] lg:transition-shadow lg:duration-300 pb-2 lg:p-6"
+            >
               <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xl font-semibold">{{ t('projects.filter') }}</h2>
+                <h2 class="text-xl font-orbitron font-semibold">{{ t('projects.filter') }}</h2>
                 <button
                   v-if="selectedTags.size > 0"
                   @click="clearFilters"
@@ -193,7 +195,7 @@ const openLink = (url: string) => {
               v-for="project in filteredProjects"
               :key="project.id"
               @click="openLink(project.link)"
-              class="bg-card rounded-lg border p-6 hover:shadow-lg hover:bg-accent transition-all duration-200 relative"
+              class="bg-card rounded-lg border p-6 shadow-[0_0_20px_0_hsl(var(--primary)/0.2)] hover:shadow-[0_0_30px_0_hsl(var(--primary)/0.3)] hover:bg-accent transition-all duration-200 relative cursor-pointer"
             >
               <!-- Icon -->
               <div
@@ -227,7 +229,7 @@ const openLink = (url: string) => {
                 </time>
 
                 <!-- Name -->
-                <h3 class="text-2xl font-bold mt-2 mb-3 pr-12">
+                <h3 class="text-2xl font-bold mt-2 mb-3 pr-12 font-orbitron">
                   {{ project.name }}
                 </h3>
 
