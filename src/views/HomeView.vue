@@ -9,6 +9,13 @@ import { Github, Linkedin, MessageCircle } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+
+const SOCIAL_LINKS = {
+  linkedin: 'https://www.linkedin.com/in/nicolasanunes/',
+  github: 'https://github.com/nicolasanunes',
+  whatsapp:
+    'https://wa.me/5534999514231?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20seu%20portf%C3%B3lio',
+} as const
 </script>
 
 <template>
@@ -63,23 +70,30 @@ const { t } = useI18n()
       </div>
       <div class="flex items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6">
         <a
-          href="https://www.linkedin.com/in/nicolasanunes/"
+          :href="SOCIAL_LINKS.linkedin"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="LinkedIn"
         >
           <Button variant="outline" size="icon" class="h-9 w-9 sm:h-10 sm:w-10">
             <Linkedin class="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </Button>
         </a>
-        <a href="https://github.com/nicolasanunes" target="_blank" rel="noopener noreferrer">
+        <a
+          :href="SOCIAL_LINKS.github"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
           <Button variant="outline" size="icon" class="h-9 w-9 sm:h-10 sm:w-10">
             <Github class="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </Button>
         </a>
         <a
-          href="https://wa.me/5534999514231?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20seu%20portf%C3%B3lio"
+          :href="SOCIAL_LINKS.whatsapp"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="WhatsApp"
         >
           <Button variant="outline" size="icon" class="h-9 w-9 sm:h-10 sm:w-10">
             <MessageCircle class="h-3.5 w-3.5 sm:h-4 sm:w-4" />

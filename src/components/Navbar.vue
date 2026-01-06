@@ -61,22 +61,25 @@ const closeMobileMenu = () => {
       </RouterLink>
 
       <!-- Links centrais - Escondidos em mobile -->
-      <div class="hidden md:flex items-center gap-2 lg:gap-4">
-        <RouterLink to="/">
+      <div class="hidden md:flex items-center gap-2 lg:gap-4" role="navigation">
+        <RouterLink to="/" :aria-current="$route.path === '/' ? 'page' : undefined">
           <Button
             :variant="$route.path === '/' ? 'secondary' : 'ghost'"
             class="text-xs lg:text-sm font-orbitron"
             >{{ t('nav.home') }}</Button
           >
         </RouterLink>
-        <RouterLink to="/curriculum-vitae">
+        <RouterLink
+          to="/curriculum-vitae"
+          :aria-current="$route.path === '/curriculum-vitae' ? 'page' : undefined"
+        >
           <Button
             :variant="$route.path === '/curriculum-vitae' ? 'secondary' : 'ghost'"
             class="text-xs lg:text-sm font-orbitron"
             >{{ t('nav.cv') }}</Button
           >
         </RouterLink>
-        <RouterLink to="/projects">
+        <RouterLink to="/projects" :aria-current="$route.path === '/projects' ? 'page' : undefined">
           <Button
             :variant="$route.path === '/projects' ? 'secondary' : 'ghost'"
             class="text-xs lg:text-sm font-orbitron"
@@ -92,13 +95,14 @@ const closeMobileMenu = () => {
           size="icon"
           @click="theme.toggle()"
           :aria-pressed="theme.isDark"
+          :aria-label="theme.isDark ? 'Switch to light mode' : 'Switch to dark mode'"
           class="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10"
         >
           <template v-if="theme.isDark">
-            <Moon class="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <Moon class="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
           </template>
           <template v-else>
-            <Sun class="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <Sun class="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
           </template>
         </Button>
         <Button
@@ -106,9 +110,10 @@ const closeMobileMenu = () => {
           size="icon"
           @click="toggleLocale()"
           :title="localeStore.locale"
+          :aria-label="`Change language (current: ${localeStore.locale})`"
           class="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10"
         >
-          <Languages class="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          <Languages class="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
         </Button>
 
         <!-- Menu button (mobile only) - Direita -->
@@ -116,10 +121,12 @@ const closeMobileMenu = () => {
           variant="outline"
           size="icon"
           @click="toggleMobileMenu()"
+          :aria-label="mobileMenuOpen ? 'Close menu' : 'Open menu'"
+          :aria-expanded="mobileMenuOpen"
           class="md:hidden h-8 w-8 sm:h-9 sm:w-9"
         >
-          <Menu v-if="!mobileMenuOpen" class="h-4 w-4" />
-          <X v-else class="h-4 w-4" />
+          <Menu v-if="!mobileMenuOpen" class="h-4 w-4" aria-hidden="true" />
+          <X v-else class="h-4 w-4" aria-hidden="true" />
         </Button>
       </div>
     </div>
@@ -135,24 +142,38 @@ const closeMobileMenu = () => {
     >
       <div
         v-if="mobileMenuOpen"
+        role="navigation"
+        aria-label="Mobile navigation"
         class="md:hidden absolute top-full left-0 right-0 backdrop-blur-sm border-b border-border shadow-lg z-50"
       >
         <div class="flex flex-col gap-1 px-4 py-3">
-          <RouterLink to="/" @click="closeMobileMenu()">
+          <RouterLink
+            to="/"
+            @click="closeMobileMenu()"
+            :aria-current="$route.path === '/' ? 'page' : undefined"
+          >
             <Button
               :variant="$route.path === '/' ? 'secondary' : 'ghost'"
               class="w-full justify-start text-sm font-orbitron"
               >{{ t('nav.home') }}</Button
             >
           </RouterLink>
-          <RouterLink to="/curriculum-vitae" @click="closeMobileMenu()">
+          <RouterLink
+            to="/curriculum-vitae"
+            @click="closeMobileMenu()"
+            :aria-current="$route.path === '/curriculum-vitae' ? 'page' : undefined"
+          >
             <Button
               :variant="$route.path === '/curriculum-vitae' ? 'secondary' : 'ghost'"
               class="w-full justify-start text-sm font-orbitron"
               >{{ t('nav.cv') }}</Button
             >
           </RouterLink>
-          <RouterLink to="/projects" @click="closeMobileMenu()">
+          <RouterLink
+            to="/projects"
+            @click="closeMobileMenu()"
+            :aria-current="$route.path === '/projects' ? 'page' : undefined"
+          >
             <Button
               :variant="$route.path === '/projects' ? 'secondary' : 'ghost'"
               class="w-full justify-start text-sm font-orbitron"

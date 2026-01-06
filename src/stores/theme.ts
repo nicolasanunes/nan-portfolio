@@ -3,11 +3,17 @@ import { defineStore } from 'pinia'
 type ThemeMode = 'system' | 'light' | 'dark'
 const THEME_KEY = 'theme'
 
+interface ThemeState {
+  mode: ThemeMode
+  systemPrefersDark: boolean
+  mql: MediaQueryList | null
+}
+
 export const useThemeStore = defineStore('theme', {
-  state: () => ({
-    mode: 'system' as ThemeMode,
+  state: (): ThemeState => ({
+    mode: 'system',
     systemPrefersDark: false,
-    mql: null as MediaQueryList | null,
+    mql: null,
   }),
   getters: {
     isDark(state): boolean {
@@ -22,9 +28,15 @@ export const useThemeStore = defineStore('theme', {
 
       this.mql = window.matchMedia('(prefers-color-scheme: dark)')
       this.systemPrefersDark = this.mql.matches
-      this.mql.addEventListener?.('change', this.onSystemChange)
+      this.mql.addEventListener('change', this.onSystemChange)
 
       this.apply()
+    },
+    cleanup() {
+      if (this.mql) {
+        this.mql.removeEventListener('change', this.onSystemChange)
+        this.mql = null
+      }
     },
     onSystemChange(e: MediaQueryListEvent) {
       this.systemPrefersDark = e.matches
@@ -41,6 +53,7 @@ export const useThemeStore = defineStore('theme', {
       this.setMode(next)
     },
     apply() {
+      if (typeof document === 'undefined') return
       const root = document.documentElement
       root.classList.toggle('dark', this.isDark)
     },

@@ -24,10 +24,11 @@ onMounted(() => {
     <FluidCursor />
 
     <!-- App layout -->
-    <header class="w-full flex-none">
+    <header class="w-full flex-none" role="banner">
       <Navbar />
     </header>
     <main
+      role="main"
       class="relative z-10 flex items-center justify-center flex-1 container mx-auto px-6 sm:px-6 md:px-8 lg:px-12"
     >
       <RouterView />

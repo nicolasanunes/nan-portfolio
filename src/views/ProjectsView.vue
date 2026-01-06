@@ -115,22 +115,28 @@ const filteredProjects = computed(() => {
 })
 
 const toggleTag = (tag: string) => {
-  if (selectedTags.value.has(tag)) {
-    selectedTags.value.delete(tag)
+  const newSet = new Set(selectedTags.value)
+  if (newSet.has(tag)) {
+    newSet.delete(tag)
   } else {
-    selectedTags.value.add(tag)
+    newSet.add(tag)
   }
-  // Trigger reactivity
-  selectedTags.value = new Set(selectedTags.value)
+  selectedTags.value = newSet
 }
 
 const clearFilters = () => {
-  selectedTags.value.clear()
   selectedTags.value = new Set()
 }
 
 const openLink = (url: string) => {
   window.open(url, '_blank', 'noopener,noreferrer')
+}
+
+const handleTagKeydown = (event: KeyboardEvent, tag: string) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault()
+    toggleTag(tag)
+  }
 }
 </script>
 
@@ -162,6 +168,9 @@ const openLink = (url: string) => {
                   v-for="tag in allTags"
                   :key="tag"
                   @click="toggleTag(tag)"
+                  @keydown="handleTagKeydown($event, tag)"
+                  :aria-pressed="selectedTags.has(tag)"
+                  :aria-label="`Filter by ${tag}`"
                   class="px-4 py-2 text-xs rounded-full transition-all duration-200 lg:rounded-md lg:w-full lg:text-left text-center"
                   :class="[
                     selectedTags.has(tag)
@@ -170,7 +179,7 @@ const openLink = (url: string) => {
                   ]"
                 >
                   <span class="font-medium">{{ tag }}</span>
-                  <span v-if="selectedTags.has(tag)" class="ml-2">✓</span>
+                  <span v-if="selectedTags.has(tag)" class="ml-2" aria-hidden="true">✓</span>
                 </button>
               </div>
 
@@ -195,6 +204,8 @@ const openLink = (url: string) => {
               v-for="project in filteredProjects"
               :key="project.id"
               @click="openLink(project.link)"
+              role="article"
+              :aria-label="`Project: ${project.name}`"
               class="bg-card rounded-lg border p-6 shadow-[0_0_20px_0_hsl(var(--primary)/0.2)] hover:shadow-[0_0_30px_0_hsl(var(--primary)/0.3)] hover:bg-accent transition-all duration-200 relative cursor-pointer"
             >
               <!-- Icon -->
@@ -219,7 +230,7 @@ const openLink = (url: string) => {
 
               <div>
                 <!-- Date -->
-                <time class="text-sm text-muted-foreground">
+                <time :datetime="project.date" class="text-sm text-muted-foreground">
                   {{
                     new Date(project.date).toLocaleDateString(locale, {
                       year: 'numeric',

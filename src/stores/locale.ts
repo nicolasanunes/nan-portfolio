@@ -3,9 +3,13 @@ import { defineStore } from 'pinia'
 type LocaleType = 'pt-BR' | 'en-US'
 const LOCALE_KEY = 'locale'
 
+interface LocaleState {
+  locale: LocaleType
+}
+
 export const useLocaleStore = defineStore('locale', {
-  state: () => ({
-    locale: 'pt-BR' as LocaleType,
+  state: (): LocaleState => ({
+    locale: 'pt-BR',
   }),
   actions: {
     init() {
@@ -22,9 +26,13 @@ export const useLocaleStore = defineStore('locale', {
     setLocale(locale: LocaleType) {
       this.locale = locale
       localStorage.setItem(LOCALE_KEY, locale)
+      // Update document lang attribute
+      if (typeof document !== 'undefined') {
+        document.documentElement.setAttribute('lang', locale)
+      }
     },
     toggle() {
-      const next = this.locale === 'pt-BR' ? 'en-US' : 'pt-BR'
+      const next: LocaleType = this.locale === 'pt-BR' ? 'en-US' : 'pt-BR'
       this.setLocale(next)
     },
   },

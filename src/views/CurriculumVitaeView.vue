@@ -5,11 +5,18 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
+const CV_DRIVE_URL =
+  'https://drive.google.com/drive/folders/1KgebkPIRfCFGaPe31g6XansKx6h7Wmiw?usp=sharing'
+
+const CONTACT_INFO = {
+  whatsapp: 'https://wa.me/5534999514231?text=Olá,%20vim%20através%20do%20seu%20portfólio',
+  email: 'mailto:nicolasanunes@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/nicolasanunes',
+  github: 'https://www.github.com/nicolasanunes',
+} as const
+
 const downloadCV = () => {
-  window.open(
-    'https://drive.google.com/drive/folders/1KgebkPIRfCFGaPe31g6XansKx6h7Wmiw?usp=sharing',
-    '_blank',
-  )
+  window.open(CV_DRIVE_URL, '_blank', 'noopener,noreferrer')
 }
 </script>
 
@@ -47,42 +54,46 @@ const downloadCV = () => {
                   </span>
                 </div>
                 <div class="flex items-start gap-2">
-                  <Phone class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+                  <Phone class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" aria-hidden="true" />
                   <a
-                    href="https://wa.me/5534999514231?text=Olá,%20vim%20através%20do%20seu%20portfólio"
+                    :href="CONTACT_INFO.whatsapp"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="WhatsApp"
                     class="text-neutral-700 dark:text-neutral-300 hover:text-primary transition-colors"
                   >
                     {{ t('cv.contact.whatsapp') }}
                   </a>
                 </div>
                 <div class="flex items-start gap-2">
-                  <Mail class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+                  <Mail class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" aria-hidden="true" />
                   <a
-                    href="mailto:nicolasanunes@gmail.com"
+                    :href="CONTACT_INFO.email"
+                    aria-label="Email"
                     class="text-neutral-700 dark:text-neutral-300 hover:text-primary transition-colors break-all"
                   >
                     nicolasanunes@gmail.com
                   </a>
                 </div>
                 <div class="flex items-start gap-2">
-                  <Linkedin class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+                  <Linkedin class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" aria-hidden="true" />
                   <a
-                    href="https://www.linkedin.com/in/nicolasanunes"
+                    :href="CONTACT_INFO.linkedin"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="LinkedIn"
                     class="text-neutral-700 dark:text-neutral-300 hover:text-primary transition-colors break-all"
                   >
                     linkedin.com/in/nicolasanunes
                   </a>
                 </div>
                 <div class="flex items-start gap-2">
-                  <Github class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+                  <Github class="w-4 h-4 mt-0.5 text-primary flex-shrink-0" aria-hidden="true" />
                   <a
-                    href="https://www.github.com/nicolasanunes"
+                    :href="CONTACT_INFO.github"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="GitHub"
                     class="text-neutral-700 dark:text-neutral-300 hover:text-primary transition-colors break-all"
                   >
                     github.com/nicolasanunes
