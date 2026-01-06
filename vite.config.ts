@@ -23,4 +23,15 @@ export default defineConfig({
       '~': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  build: {
+    // Garantir que os assets sejam servidos corretamente
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['vue', 'vue-router', 'pinia'],
+        },
+      },
+    },
+  },
 })
