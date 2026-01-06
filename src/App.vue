@@ -28,7 +28,7 @@ onMounted(() => {
       <Navbar />
     </header>
     <main
-      class="relative z-10 flex items-center justify-center flex-1 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12"
+      class="relative z-10 flex items-center justify-center flex-1 container mx-auto px-6 sm:px-6 md:px-8 lg:px-12"
     >
       <RouterView />
     </main>

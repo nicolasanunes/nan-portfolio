@@ -48,7 +48,7 @@ const { t } = useI18n()
       <div
         class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 w-full sm:w-auto"
       >
-        <RouterLink to="/work" class="w-full sm:w-auto">
+        <RouterLink to="/curriculum-vitae" class="w-full sm:w-auto">
           <Button class="rounded-md text-xs sm:text-sm w-full sm:w-auto">{{ t('home.cv') }}</Button>
         </RouterLink>
         <RouterLink to="/projects" class="w-full sm:w-auto">

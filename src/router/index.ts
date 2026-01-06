@@ -1,15 +1,17 @@
 import HomeView from '@/views/HomeView.vue'
-import WorkView from '@/views/WorkView.vue'
 import ProjectsView from '@/views/ProjectsView.vue'
-import PortfolioView from '@/views/PortfolioView.vue'
+import CurriculumVitaeView from '@/views/CurriculumVitaeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { i18n } from '@/plugins/i18n'
 
 const routes = [
   { path: '/', component: HomeView, meta: { titleKey: 'nav.home' } },
-  { path: '/work', component: WorkView, meta: { titleKey: 'nav.work' } },
+  {
+    path: '/curriculum-vitae',
+    component: CurriculumVitaeView,
+    meta: { titleKey: 'nav.cv' },
+  },
   { path: '/projects', component: ProjectsView, meta: { titleKey: 'nav.projects' } },
-  { path: '/portfolio', component: PortfolioView, meta: { titleKey: 'nav.portfolio' } },
 ]
 
 const router = createRouter({

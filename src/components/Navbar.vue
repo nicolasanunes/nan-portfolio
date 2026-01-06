@@ -48,7 +48,7 @@ const closeMobileMenu = () => {
   <nav class="w-full relative">
     <!-- Main navbar -->
     <div
-      class="w-full flex items-center justify-between md:justify-center gap-2 sm:gap-4 md:gap-8 lg:gap-32 px-4 sm:px-6 md:px-8 py-3 md:py-4"
+      class="w-full flex items-center justify-between md:justify-center gap-2 sm:gap-4 md:gap-8 lg:gap-32 px-6 md:px-8 py-3 md:py-4"
     >
       <!-- Logo à esquerda -->
       <RouterLink to="/">
@@ -69,11 +69,11 @@ const closeMobileMenu = () => {
             >{{ t('nav.home') }}</Button
           >
         </RouterLink>
-        <RouterLink to="/work">
+        <RouterLink to="/curriculum-vitae">
           <Button
-            :variant="$route.path === '/work' ? 'secondary' : 'ghost'"
+            :variant="$route.path === '/curriculum-vitae' ? 'secondary' : 'ghost'"
             class="text-xs lg:text-sm"
-            >{{ t('nav.work') }}</Button
+            >{{ t('nav.cv') }}</Button
           >
         </RouterLink>
         <RouterLink to="/projects">
@@ -81,13 +81,6 @@ const closeMobileMenu = () => {
             :variant="$route.path === '/projects' ? 'secondary' : 'ghost'"
             class="text-xs lg:text-sm"
             >{{ t('nav.projects') }}</Button
-          >
-        </RouterLink>
-        <RouterLink to="/portfolio">
-          <Button
-            :variant="$route.path === '/portfolio' ? 'secondary' : 'ghost'"
-            class="text-xs lg:text-sm"
-            >{{ t('nav.portfolio') }}</Button
           >
         </RouterLink>
       </div>
@@ -152,11 +145,11 @@ const closeMobileMenu = () => {
               >{{ t('nav.home') }}</Button
             >
           </RouterLink>
-          <RouterLink to="/work" @click="closeMobileMenu()">
+          <RouterLink to="/curriculum-vitae" @click="closeMobileMenu()">
             <Button
-              :variant="$route.path === '/work' ? 'secondary' : 'ghost'"
+              :variant="$route.path === '/curriculum-vitae' ? 'secondary' : 'ghost'"
               class="w-full justify-start text-sm"
-              >{{ t('nav.work') }}</Button
+              >{{ t('nav.cv') }}</Button
             >
           </RouterLink>
           <RouterLink to="/projects" @click="closeMobileMenu()">
@@ -164,13 +157,6 @@ const closeMobileMenu = () => {
               :variant="$route.path === '/projects' ? 'secondary' : 'ghost'"
               class="w-full justify-start text-sm"
               >{{ t('nav.projects') }}</Button
-            >
-          </RouterLink>
-          <RouterLink to="/portfolio" @click="closeMobileMenu()">
-            <Button
-              :variant="$route.path === '/portfolio' ? 'secondary' : 'ghost'"
-              class="w-full justify-start text-sm"
-              >{{ t('nav.portfolio') }}</Button
             >
           </RouterLink>
         </div>
