@@ -14,6 +14,7 @@ const getServerConfig = () => {
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/nan-portfolio/',
   server: getServerConfig(),
   plugins: [vue(), vueDevTools(), tailwindcss()],
   resolve: {
