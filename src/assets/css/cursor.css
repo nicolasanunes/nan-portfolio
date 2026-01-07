@@ -9,7 +9,8 @@
 .custom-cursor a,
 .custom-cursor input[type='submit'],
 .custom-cursor input[type='button'],
-.custom-cursor [role='button'] {
+.custom-cursor [role='button'],
+.custom-cursor .cursor-pointer {
   cursor:
     url('/src/assets/cursor/Alien Sitting on Moon & Floating With Planet - pointer - SweezyCursors.png'),
     pointer;

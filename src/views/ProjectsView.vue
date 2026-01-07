@@ -132,6 +132,17 @@ const openLink = (url: string) => {
   window.open(url, '_blank', 'noopener,noreferrer')
 }
 
+const handleProjectClick = (event: MouseEvent, url: string) => {
+  // Middle click (button 1) or Ctrl+click should open in new tab
+  if (event.button === 1 || event.ctrlKey || event.metaKey) {
+    event.preventDefault()
+    window.open(url, '_blank', 'noopener,noreferrer')
+  } else if (event.button === 0) {
+    // Left click opens in new tab
+    openLink(url)
+  }
+}
+
 const handleTagKeydown = (event: KeyboardEvent, tag: string) => {
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault()
@@ -203,7 +214,8 @@ const handleTagKeydown = (event: KeyboardEvent, tag: string) => {
             <div
               v-for="project in filteredProjects"
               :key="project.id"
-              @click="openLink(project.link)"
+              @mousedown="handleProjectClick($event, project.link)"
+              @auxclick="handleProjectClick($event, project.link)"
               role="article"
               :aria-label="`Project: ${project.name}`"
               class="bg-card rounded-lg border p-6 shadow-[0_0_20px_0_hsl(var(--primary)/0.2)] hover:shadow-[0_0_30px_0_hsl(var(--primary)/0.3)] hover:bg-accent transition-all duration-200 relative cursor-pointer"
